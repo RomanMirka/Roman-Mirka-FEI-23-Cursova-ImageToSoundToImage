@@ -4,9 +4,16 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Haptics from "expo-haptics";
 import Buttons from "../components/Buttons";
+import {
+  startRecording,
+  stopRecording,
+  decodeImageFromSound,
+} from "../logic/AudioReciever";
 
 export default function ReceiveScreen() {
   const navigation = useNavigation();
+  const [isListening, setIsListening] = useState(false);
+  const [recording, setRecording] = useState(null);
   const [receivedImage, setReceivedImage] = useState(null);
 
   const goBack = async () => {
@@ -15,42 +22,55 @@ export default function ReceiveScreen() {
   };
 
   const handlePlay = async () => {
-    await await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    const rec = await startRecording();
+    setRecording(rec);
+    setIsListening(true);
   };
 
   const handleStop = async () => {
-    await await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+    const uri = await stopRecording(recording);
+    setRecording(null);
+    setIsListening(false);
+    if (uri) {
+      const decoded = await decodeImageFromSound(uri);
+      setReceivedImage(decoded);
+    }
   };
 
   return (
-    <LinearGradient
-      colors={["#f6faedff", "#caedd2ff", "#b8e0c1ff"]}
-      style={styles.container}
-    >
-      {/* верхній надпис */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={goBack}>
-          <Text style={styles.backText}>Назад</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* центральне вікно */}
-      <View style={styles.center}>
-        <View style={styles.photoBox}>
-          {receivedImage ? (
-            <Image source={{ uri: receivedImage }} style={styles.image} />
-          ) : (
-            <Text style={styles.text}>Фото ще не отримано</Text>
-          )}
+    <View style={styles.container}>
+      <LinearGradient
+        colors={["#f6faedff", "#caedd2ff", "#b8e0c1ff"]}
+        style={StyleSheet.absoluteFill}
+      >
+        <View style={styles.header}>
+          <TouchableOpacity onPress={goBack}>
+            <Text style={styles.backText}>Назад</Text>
+          </TouchableOpacity>
         </View>
-      </View>
 
-      {/* кнопки */}
-      <View style={styles.buttonContainer}>
-        <Buttons title="Слухати" onPress={handlePlay} />
-        <Buttons title="Зупинити" onPress={handleStop} />
-      </View>
-    </LinearGradient>
+        <View style={styles.center}>
+          <View style={styles.photoBox}>
+            {receivedImage ? (
+              <Image source={{ uri: receivedImage }} style={styles.image} />
+            ) : (
+              <Text style={styles.text}>Фото ще не отримано</Text>
+            )}
+          </View>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Buttons
+            title={isListening ? "Слухаю..." : "Слухати"}
+            onPress={handlePlay}
+          />
+          <Buttons title="Зупинити" onPress={handleStop} />
+        </View>
+      </LinearGradient>
+    </View>
   );
 }
 
@@ -99,6 +119,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 20,
+    resizeMode: "cover",
+    backfaceVisibility: "hidden",
   },
   buttonContainer: {
     flexDirection: "row",

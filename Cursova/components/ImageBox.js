@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import * as Haptics from "expo-haptics";
 
-export default function ImageBox({ image, onPick, onRemove }) {
+function ImageBox({ image, onPick, onRemove }) {
   return (
     <TouchableOpacity
       style={styles.photoBox}
@@ -24,6 +24,8 @@ export default function ImageBox({ image, onPick, onRemove }) {
     </TouchableOpacity>
   );
 }
+
+export default React.memo(ImageBox);
 
 const styles = StyleSheet.create({
   photoBox: {
@@ -52,15 +54,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.36)",
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 24,
     justifyContent: "center",
     alignItems: "center",
   },
   closeText: {
-    color: "#fff",
+    color: "#ffffffff",
     fontSize: 18,
     fontWeight: "bold",
   },
