@@ -126,6 +126,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     width: "100%",
-    paddingBottom: 54,
+    paddingBottom: 104,
   },
 });

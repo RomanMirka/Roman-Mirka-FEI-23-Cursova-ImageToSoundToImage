@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, StyleSheet, Text, Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import useImagePicker from "../logic/useImagePicker";
 import ImageBox from "../components/ImageBox";
@@ -12,6 +13,8 @@ export default function HomeScreen() {
   const navigation = useNavigation();
   const { image, base64, transferTime, pickImage, removeImage } =
     useImagePicker();
+
+  const insets = useSafeAreaInsets();
 
   const [sendTitle, setSendTitle] = useState("Передати");
 
@@ -39,12 +42,10 @@ export default function HomeScreen() {
       colors={["#f5ffd9", "#b2f0c0", "#97e4a8"]}
       style={styles.background}
     >
-      {/* Фото */}
       <View style={styles.center}>
         <ImageBox image={image} onPick={pickImage} onRemove={removeImage} />
       </View>
 
-      {/* Час передачі */}
       {transferTime && (
         <Text style={styles.transferText}>
           Час передачі ≈ {transferTime} сек
@@ -52,15 +53,14 @@ export default function HomeScreen() {
       )}
 
       {/* Кнопки */}
-      <View style={styles.buttonContainer}>
+      <View
+        style={[styles.buttonContainer, { paddingBottom: insets.bottom + 24 }]}
+      >
         <Buttons
           title="Прийняти"
           onPress={() => navigation.navigate("Receive")}
         />
-        <Buttons
-          title={sendTitle}
-          onPress={handleSend} // 🟢 БЕЗ disabled
-        />
+        <Buttons title={sendTitle} onPress={handleSend} />
       </View>
     </LinearGradient>
   );
@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     width: "100%",
-    paddingBottom: 54,
+    paddingBottom: insets.bottom + 24,
   },
 });
