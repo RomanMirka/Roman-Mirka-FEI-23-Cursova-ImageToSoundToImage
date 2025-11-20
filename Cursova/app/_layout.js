@@ -4,8 +4,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 export default function Layout() {
   return (
     <NativeTabs>
-      <NativeTabs.Trigger name="index">
-        <Label>Home</Label>
+      <NativeTabs.Trigger name="Home">
         {Platform.select({
           ios: <Icon sf="house.fill" />,
           android: (
