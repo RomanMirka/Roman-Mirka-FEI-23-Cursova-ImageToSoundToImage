@@ -21,18 +21,18 @@ export default React.memo(Buttons);
 
 const styles = StyleSheet.create({
   button: {
-    width: 140,
+    width: 160,
     height: 55,
-    borderRadius: 24,
+    borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ffffff83",
+    backgroundColor: "#f2fefcff",
     borderWidth: 1,
-    borderColor: "#ffffffe7",
+    borderColor: "rgba(0, 0, 0, 0.19)",
   },
   buttonText: {
-    color: "#303030",
-    fontWeight: "600",
+    color: "#000000ff",
+    fontWeight: "500",
     fontSize: 16,
   },
 });

@@ -13,7 +13,7 @@ export default function HomeScreen() {
 
   return (
     <LinearGradient
-      colors={["#b4b4b4ff", "#929292ff", "#878484ff"]}
+      colors={["#d8f9f5ff", "#e4fbf8ff", "#defffbff"]}
       style={styles.background}
     >
       <View style={styles.center}>

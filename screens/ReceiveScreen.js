@@ -1,4 +1,3 @@
-import React from "react";
 import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import SoundReceiver from "../logic/SoundReceiver"; 
@@ -7,7 +6,7 @@ export default function ReceiveScreen() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={["#f6faedff", "#e5f0e7ff", "#aaaaaaff"]}
+        colors={["#d8f9f5ff ", "#e4fbf8ff", "#defffbff"]}
         style={StyleSheet.absoluteFill}
       >
         <View style={styles.center}>
