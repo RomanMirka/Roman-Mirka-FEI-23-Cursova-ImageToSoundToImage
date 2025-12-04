@@ -1,23 +1,21 @@
 import React, { useState, useRef } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert , Platform } from "react-native";
 import { Audio } from "expo-av";
 import Buttons from "../components/Buttons";
 
-const THRESHOLD = -55;
+const THRESHOLD = Platform.OS === "ios" ? -30 : -55;
 const GRID_SIZE = 16;
 const TOTAL_PIXELS = GRID_SIZE * GRID_SIZE;
 
 const MIN_NOISE_DURATION = 120;
-const ONE_MAX = 500;
-const ZERO_MIN = 501;
-const ZERO_MAX = 900;
+const ONE_MAX = 599;
+const ZERO_MIN = 601;
+const ZERO_MAX = 1200;
 
 export default function SoundReceiver() {
   const [isListening, setIsListening] = useState(false);
   const [pixels, setPixels] = useState([]);
   const [recording, setRecording] = useState(null);
-  
-  // Ми прибрали state currentLevel, оскільки він використовувався лише для UI бару
 
   const signalStart = useRef(null);
   const isSignalActive = useRef(false);
@@ -168,11 +166,11 @@ const styles = StyleSheet.create({
 
   photoBox: {
     width: "90%",
-    height: "55%",
+    height: "49%",
     borderRadius: 30,
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0.33)",
-    backgroundColor: "#f2fefcff",
+    backgroundColor: "#f2f7feff",
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
@@ -199,5 +197,5 @@ const styles = StyleSheet.create({
 
   statusText: { marginTop: 10, fontSize: 16, color: "#333" },
 
-  buttonContainer: { marginTop: 20, width: "100%", alignItems: "center" },
+  buttonContainer: { marginTop: 200, width: "100%", alignItems: "center" },
 });

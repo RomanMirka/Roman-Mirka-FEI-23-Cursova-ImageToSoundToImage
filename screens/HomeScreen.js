@@ -1,19 +1,17 @@
 import React from "react";
 import { View, StyleSheet, Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation } from "@react-navigation/native";
 
 import useImagePicker from "../logic/useImagePicker";
 import ImageBox from "../components/ImageBox";
 import SoundTransmitter from "../logic/SoundTransmitter"; 
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
   const { image, pixelArray, pickImage, removeImage } = useImagePicker();
 
   return (
     <LinearGradient
-      colors={["#d8f9f5ff", "#e4fbf8ff", "#defffbff"]}
+      colors={["#b4c9f8ff", "#a8c3fcff", "#bdcae6ff"]}
       style={styles.background}
     >
       <View style={styles.center}>

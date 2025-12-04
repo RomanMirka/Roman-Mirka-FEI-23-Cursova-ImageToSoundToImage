@@ -6,7 +6,7 @@ export default function ReceiveScreen() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={["#d8f9f5ff ", "#e4fbf8ff", "#defffbff"]}
+        colors={["#86a3e0ff", "#83a6f1ff", "#b3c4e9ff"]}
         style={StyleSheet.absoluteFill}
       >
         <View style={styles.center}>

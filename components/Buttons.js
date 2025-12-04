@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f2fefcff",
-    borderWidth: 1,
-    borderColor: "rgba(0, 0, 0, 0.19)",
+    backgroundColor: "#f2f7feff",
+    borderWidth: 2,
+    borderColor: "rgba(0, 0, 0, 0.23)",
   },
   buttonText: {
     color: "#000000ff",
