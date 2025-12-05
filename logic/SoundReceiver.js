@@ -67,9 +67,7 @@ export default function SoundReceiver() {
 
   const onRecordingStatusUpdate = (status) => {
     if (!status.isRecording) return;
-    
-    // Ми використовуємо локальну змінну level для логіки, 
-    // але більше не зберігаємо її в state (setCurrentLevel) для рендерингу
+
     const level = status.metering;
 
     if (level > THRESHOLD) {
@@ -116,7 +114,6 @@ export default function SoundReceiver() {
 
     setPixels((prev) => {
       const arr = [...prev, bit];
-      // Прибрано Haptics.selectionAsync
       return arr;
     });
   };
