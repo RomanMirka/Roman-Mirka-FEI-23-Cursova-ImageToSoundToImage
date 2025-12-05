@@ -18,22 +18,29 @@ export default function useImagePicker() {
       if (!granted) return Alert.alert("Немає дозволу");
 
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ['images'],
+        mediaTypes: ['images'], // В нових версіях ImagePicker.MediaTypeOptions.Images
         allowsEditing: true,
         aspect: [1, 1],
         quality: 1,
       });
 
       if (result.canceled) return;
-      const uri = result.assets?.[0]?.uri;
+      
+      // 1. Отримуємо оригінальний URI
+      const originalUri = result.assets?.[0]?.uri;
 
+      // 2. ОДРАЗУ зберігаємо оригінал для відображення в UI
+      setImage(originalUri); 
+
+      // 3. Створюємо маленьку копію виключно для обробки даних (фоново)
       const manipResult = await ImageManipulator.manipulateAsync(
-        uri,
+        originalUri,
         [{ resize: { width: TARGET_SIZE, height: TARGET_SIZE } }],
         { base64: true, format: ImageManipulator.SaveFormat.JPEG }
       );
 
-      setImage(manipResult.uri); 
+      // Примітка: ми більше не робимо setImage(manipResult.uri), 
+      // щоб не перезаписати якісну картинку "піксельною"
 
       const base64 = manipResult.base64;
       const arrayBuffer = decode(base64); 
@@ -47,8 +54,10 @@ export default function useImagePicker() {
         const g = decoded.data[i + 1];
         const b = decoded.data[i + 2];
 
+        // Просте перетворення на відтінки сірого
         const brightness = (r + g + b) / 3;
 
+        // Поріг (можна налаштувати, наприклад, 100 або 150)
         const bit = brightness > 128 ? 1 : 0;
         binaries.push(bit);
       }
