@@ -33,8 +33,8 @@ export default function SoundTransmitter({ pixelArray }) {
     let soundOne = null;
 
     try {
-      const s0 = await Audio.Sound.createAsync(require("../assets/zero.mp3"), { isLooping: true });
-      const s1 = await Audio.Sound.createAsync(require("../assets/one.mp3"), { isLooping: true });
+      const s0 = await Audio.Sound.createAsync(require("../assets/zero.mp3"));
+      const s1 = await Audio.Sound.createAsync(require("../assets/one.mp3"));
       
       soundZero = s0.sound;
       soundOne = s1.sound;

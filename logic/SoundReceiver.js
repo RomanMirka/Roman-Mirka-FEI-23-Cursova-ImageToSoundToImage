@@ -27,7 +27,6 @@ export default function SoundReceiver() {
     isSignalActive.current = false;
     quietCounter.current = 0;
 
-    // Прибрано Haptics.impactAsync
 
     try {
       const { status } = await Audio.requestPermissionsAsync();
@@ -194,5 +193,5 @@ const styles = StyleSheet.create({
 
   statusText: { marginTop: 10, fontSize: 16, color: "#333" },
 
-  buttonContainer: { marginTop: 200, width: "100%", alignItems: "center" },
+  buttonContainer: { marginTop: 150, width: "100%", alignItems: "center" },
 });

@@ -11,12 +11,12 @@ export default function Layout() {
     <NativeTabs>
       <NativeTabs.Trigger name="index">
         {Platform.select({
-          ios: <Icon sf="house.fill" />,
+          ios: <Icon sf="bolt.fill" />,
           android: (
-            <Icon src={<VectorIcon family={MaterialIcons} name="home" />} />
+            <Icon src={<VectorIcon family={MaterialIcons} name="bolt" />} />
           ),
         })}
-        <Label>Home</Label>
+        <Label>Transfer</Label>
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="Receive">
@@ -26,7 +26,7 @@ export default function Layout() {
             <Icon src={<VectorIcon family={MaterialIcons} name="mic" />} />
           ),
         })}
-        <Label>Mic</Label>
+        <Label>Receive</Label>
       </NativeTabs.Trigger>
     </NativeTabs>
   );
