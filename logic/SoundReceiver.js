@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { View, Text, StyleSheet, Alert , Platform } from "react-native";
+import { View, Text, StyleSheet, Alert, Platform } from "react-native";
 import { Audio } from "expo-av";
 import Buttons from "../components/Buttons";
 
@@ -27,7 +27,6 @@ export default function SoundReceiver() {
     isSignalActive.current = false;
     quietCounter.current = 0;
 
-
     try {
       const { status } = await Audio.requestPermissionsAsync();
       if (status !== "granted") {
@@ -43,7 +42,7 @@ export default function SoundReceiver() {
 
       const { recording } = await Audio.Recording.createAsync(
         Audio.RecordingOptionsPresets.HighQuality,
-        onRecordingStatusUpdate
+        onRecordingStatusUpdate,
       );
 
       await recording.setProgressUpdateInterval(10);
@@ -56,7 +55,6 @@ export default function SoundReceiver() {
   };
 
   const handleStopListening = async () => {
-    // Прибрано Haptics.impactAsync
     try {
       if (recording) await recording.stopAndUnloadAsync();
     } catch {}
@@ -119,7 +117,6 @@ export default function SoundReceiver() {
 
   return (
     <View style={styles.container}>
-
       <View style={styles.photoBox}>
         {pixels.length === 0 && !isListening && (
           <Text style={styles.placeholderText}>Готовий до прийому</Text>
@@ -158,7 +155,7 @@ export default function SoundReceiver() {
 }
 
 const styles = StyleSheet.create({
-  container: { alignItems: "center", width: "100%"},
+  container: { alignItems: "center", width: "000%" },
 
   photoBox: {
     width: "90%",
@@ -170,11 +167,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
-    marginTop: 20, 
+    marginTop: 20,
   },
 
   gridContainer: {
-    flexDirection: "row",
+    fexDirection: "row",
     flexWrap: "wrap",
     width: 256,
     height: 256,

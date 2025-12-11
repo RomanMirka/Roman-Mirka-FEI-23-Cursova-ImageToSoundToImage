@@ -38,7 +38,6 @@ export default function useImagePicker() {
 
       const base64 = manipResult.base64;
       const arrayBuffer = decode(base64); 
- 
       const decoded = jpeg.decode(arrayBuffer, { useTArray: true }); 
       
       const binaries = [];
