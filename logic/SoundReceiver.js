@@ -155,7 +155,7 @@ export default function SoundReceiver() {
 }
 
 const styles = StyleSheet.create({
-  container: { alignItems: "center", width: "000%" },
+  container: { alignItems: "center", width: "100%" },
 
   photoBox: {
     width: "90%",

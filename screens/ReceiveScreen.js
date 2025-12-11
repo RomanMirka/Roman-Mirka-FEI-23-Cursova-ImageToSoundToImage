@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import SoundReceiver from "../logic/SoundReceiver"; 
+import SoundReceiver from "../logic/SoundReceiver";
 
 export default function ReceiveScreen() {
   return (
