@@ -3,14 +3,14 @@ import { View, Text, Alert, StyleSheet } from "react-native";
 import { Audio } from "expo-av";
 import Buttons from "../components/Buttons";
 
-const DURATION_ZERO = 600;   
-const DURATION_ONE = 200;    
-const PAUSE_BETWEEN = 500;   
+const DURATION_ZERO = 600;
+const DURATION_ONE = 200;
+const PAUSE_BETWEEN = 500;
 
 export default function SoundTransmitter({ pixelArray }) {
   const [isSending, setIsSending] = useState(false);
   const [progress, setProgress] = useState(0);
-  
+
   const stopSignal = useRef(false);
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -35,7 +35,7 @@ export default function SoundTransmitter({ pixelArray }) {
     try {
       const s0 = await Audio.Sound.createAsync(require("../assets/zero.mp3"));
       const s1 = await Audio.Sound.createAsync(require("../assets/one.mp3"));
-      
+
       soundZero = s0.sound;
       soundOne = s1.sound;
 
@@ -60,7 +60,6 @@ export default function SoundTransmitter({ pixelArray }) {
 
         await sleep(PAUSE_BETWEEN);
       }
-
     } catch (error) {
       console.error("Помилка звуку:", error);
       Alert.alert("Помилка", "Не вдалося відтворити звук.");
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   progressText: {
-    color: "#333", 
+    color: "#333",
     marginBottom: 10,
     fontSize: 14,
     fontWeight: "bold",
