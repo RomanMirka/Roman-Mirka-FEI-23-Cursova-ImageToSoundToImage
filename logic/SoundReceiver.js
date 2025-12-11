@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
 
   gridContainer: {
-    fexDirection: "row",
+    flexDirection: "row",
     flexWrap: "wrap",
     width: 256,
     height: 256,
