@@ -8,8 +8,8 @@ const GRID_SIZE = 16;
 const TOTAL_PIXELS = GRID_SIZE * GRID_SIZE;
 
 const MIN_NOISE_DURATION = 120;
-const ONE_MAX = 599;
-const ZERO_MIN = 601;
+const ONE_MAX = 500;
+const ZERO_MIN = 501;
 const ZERO_MAX = 1200;
 
 export default function SoundReceiver() {
